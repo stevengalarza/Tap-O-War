@@ -1,4 +1,4 @@
-var connection = new WebSocket('ws://127.0.0.1:45454');
+var connection = new WebSocket('ws://34.209.104.210:45454');
 
 connection.onopen = function() {
     connection.send("noob"); // send master command
