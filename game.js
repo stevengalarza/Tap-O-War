@@ -75,8 +75,8 @@ var server = webSocket.createServer(function(conn) {
                 if (conn === masterConnection) {
                     pickRandomColor();
                     setTimeout(function() {
-                        server.close();
-                    }, 30000);
+                        process.exit();
+                    }, 45000);
                 }
             break;
         }
