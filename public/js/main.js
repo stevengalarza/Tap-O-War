@@ -27,7 +27,7 @@ connection.onmessage = function (e) {
                     if (timer < 10) {
                         $("#time").css("color", "red");
                     }
-                    if (timer < 0) {
+                    if (timer < 1) {
                         clearInterval(timerInterval);
                     }
                 }, 1000);
