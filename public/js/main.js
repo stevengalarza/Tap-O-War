@@ -23,7 +23,7 @@ connection.onmessage = function (e) {
                 timer = 45;
                 var timerInterval = setInterval(function() {
                     timer--;
-                    $("#time").text("Time: 0:" + (time < 10 ? "0" : "") + time); // cheap haxs tbh
+                    $("#time").text("Time: 0:" + (timer < 10 ? "0" : "") + timer); // cheap haxs tbh
                 }, 1000);
             }
             $("#colortap").css("background-color", e.data);
