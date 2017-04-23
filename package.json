@@ -1,0 +1,11 @@
+{
+  "name": "colorwar",
+  "version": "1.0.0",
+  "description": "Color war game application.",
+  "main": "game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Steven Galarza",
+  "license": "UNLICENSED"
+}

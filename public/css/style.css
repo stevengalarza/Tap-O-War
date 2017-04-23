@@ -1,0 +1,11 @@
+body {
+  padding-top: 50px;
+}
+
+#team1players, #team2players, #team1score, #team2score {
+	color: red;
+}
+
+.main-container {
+  padding: 40px 15px;
+}
