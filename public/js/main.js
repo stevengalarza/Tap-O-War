@@ -24,6 +24,9 @@ connection.onmessage = function (e) {
                 var timerInterval = setInterval(function() {
                     timer--;
                     $("#time").text("Time: 0:" + (timer < 10 ? "0" : "") + timer); // cheap haxs tbh
+                    if (timer < 10) {
+                        $("#time").css("color", "red");
+                    }
                     if (timer < 0) {
                         clearInterval(timerInterval);
                     }

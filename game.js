@@ -41,6 +41,7 @@ app.listen(80, function(){
 // Configure web socket
 var server = webSocket.createServer(function(conn) {    
     conn.on("text", function (str) {
+        str = str.toLowerCase();
         if (str === masterCommand) {
             masterConnection = conn;
             if (masterTimer) {
