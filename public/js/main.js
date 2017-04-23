@@ -1,6 +1,7 @@
 var connection = new WebSocket('ws://34.209.104.210:45454');
 //var connection = new WebSocket('ws://127.0.0.1:45454');
 var colorEnabled = false;
+var time = -1;
 
 connection.onopen = function() {
     connection.send("noob"); // send master command
@@ -18,6 +19,13 @@ connection.onmessage = function (e) {
         case "yellow":
         case "blue":
         case "green":
+            if (timer == -1) {
+                timer = 45;
+                var timerInterval = setInterval(function() {
+                    timer--;
+                    $("#time").text("Time: 0:" + (time < 10 ? "0" : "") + time); // cheap haxs tbh
+                }, 1000);
+            }
             $("#colortap").css("background-color", e.data);
         return;
     }
