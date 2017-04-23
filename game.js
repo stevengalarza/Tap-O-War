@@ -12,10 +12,15 @@ var teamPoints = [0, 0];
 
 var viewDir = __dirname + '/views/';
 
-var code = "noob";// generateCode();
+var code = "hackru";// generateCode();
 var masterCommand = "noob";
 var masterConnection;
 var masterTimer;
+var currentColor;
+
+var colors = ["red", "blue", "green", "yellow"];
+
+pickColor();
 
 // Configure express
 
@@ -34,7 +39,7 @@ app.listen(80, function(){
 
 
 // Configure web socket
-var server = webSocket.createServer(function(conn) {
+var server = webSocket.createServer(function(conn) {    
     conn.on("text", function (str) {
         if (str === masterCommand) {
             masterConnection = conn;
@@ -59,8 +64,21 @@ var server = webSocket.createServer(function(conn) {
                 conn.sendText("unabletojoin");
             }
         }
-        if (str === "poke") {
-            poke(conn);
+        switch (str) {
+            case "poke":
+                poke(conn, 1);
+            break;
+            case "badpoke":
+                poke(conn, -2);
+            break;
+            case "startcolor":
+                if (conn === masterConnection) {
+                    pickRandomColor();
+                    setTimeout(function() {
+                        server.close();
+                    }, 30000);
+                }
+            break;
         }
     });
     conn.on("error", function(err) {
@@ -84,14 +102,37 @@ server.listen(45454, function() {
     console.log("Web server online");
 });
 
-function poke(conn) {
-     teamPoints[conn.playerTeam]++;
+function poke(conn, inc) {
+     teamPoints[conn.playerTeam] += inc;
 }
 
 function findTeam() {
     var team = (teamSizes[0] == 0 || teamSizes[0] < teamSizes[1]) ? 0 : 1;
     teamSizes[team]++;
     return team;
+}
+
+function pickRandomColor() {
+    var previousColor = currentColor;
+    pickColor();
+    if (currentColor == previousColor) {
+        pickRandomColor();
+        return;
+    }
+    broadcast(currentColor);
+
+    
+    setTimeout(pickRandomColor, Math.floor(1500 + Math.random() * 3000));
+}
+
+function pickColor() {
+    currentColor = colors[Math.floor(Math.random() * colors.length)];
+}
+
+function broadcast(message) {
+    server.connections.forEach(function(conn) {
+        conn.sendText(message)
+    });
 }
 
 function generateCode() {

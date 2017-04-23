@@ -6,6 +6,13 @@ body {
 	color: red;
 }
 
+#colortap {
+  background-color: white;
+  display: block;
+  width: 100px;
+  height: 100px;
+}
+
 .main-container {
   padding: 40px 15px;
 }
