@@ -1,4 +1,4 @@
-var connection = new WebSocket('ws://34.209.104.210:45454');
+var connection = new WebSocket('ws://54.227.222.163:45454');
 //var connection = new WebSocket('ws://127.0.0.1:45454');
 var colorEnabled = false;
 var timer = -1;
