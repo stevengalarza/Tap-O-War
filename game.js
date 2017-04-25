@@ -29,6 +29,10 @@ app.set('views', viewDir);
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public/'));
 
+app.get('/', function(req, res) {
+    res.sendFile("game.html");
+});
+
 app.get('/game', function(req, res){
   res.render('index.ejs', {code: code});
 });
